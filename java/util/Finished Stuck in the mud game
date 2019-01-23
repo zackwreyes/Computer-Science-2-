@@ -1,0 +1,165 @@
+import java.util.Scanner;
+
+public class DiceGame {
+
+	public static void main(String[] args) {
+		
+		int howManyDiceLeft = 5;
+		int[] diceArray = new int[howManyDiceLeft];
+		boolean anyTwosOrFives = checkDiceForTwoOrFive(diceArray);
+		int sumForRound = calculateSumForRound(diceArray);
+		int GameTotal = 0;
+		boolean keepGoing = true;
+		boolean playagain = true;
+		int roundCount = 1;
+
+		//Explain rules of the game and ask user if they want to play
+		System.out.println("You are playing the dice game, you start out with 5 dice. \n"
+				+ "If the dice rolls 2 or 5 it takes a dice away until you have no more dice to roll.\n"
+				+ "At the end of the game you get a total of all your dice added up.\n");
+		System.out.println("Would you like to play? (1 = yes/2 = no)");
+		
+		//Ask for user input
+		Scanner scanner = new Scanner(System.in);
+		int play = scanner.nextInt();
+		
+		if(play == 1) {
+
+		while (playagain) {
+			
+		while(keepGoing) {
+			System.out.print("You've started round: " + roundCount);
+			System.out.print("\n" + howManyDiceLeft + " dice left.\n");
+			rollDiceArray(diceArray,howManyDiceLeft);
+			printDiceArray(diceArray, howManyDiceLeft);
+			anyTwosOrFives = checkDiceForTwoOrFive(diceArray);
+			sumForRound = calculateSumForRound(diceArray);
+			GameTotal = GameTotal + sumForRound;
+			howManyDiceLeft = findNextDiceCount(diceArray,howManyDiceLeft);
+
+			if(anyTwosOrFives) {
+				System.out.println("Sorry, you lost dice. Remaining dice: " + howManyDiceLeft + "\n");
+			} else {
+				System.out.println("You didn't lose any dice! Sum for game so far is: " + GameTotal + "\n");
+			}
+
+
+			if(0>=howManyDiceLeft) {
+				keepGoing = false;
+				System.out.print("You are out of dice. Final score: " + GameTotal + ". ");
+				
+			
+				
+				
+			} else {
+				roundCount++;	
+			}
+			
+			// end of keep going while loop
+			}
+		
+			// check if user want to play again
+		System.out.println("Would you like to play again? (1 = yes/ 2 = no)");
+		
+		Scanner playscanner = new Scanner(System.in);
+		int repeat = playscanner.nextInt();
+		//read the user input and go about repeating the while loop playagain or finishing the program
+		if (repeat == 1) {
+			
+		howManyDiceLeft = 5;
+		keepGoing= true;
+		playagain = true;
+		}
+		else {
+			playagain = false;
+			
+		}
+		//end of play again loop
+		}
+		
+		System.out.println("\nThanks for playing stuck in the mud game.");
+		
+		// end of if statement for if the user chooses to play
+		}
+		else  {
+			
+			// else statement for if the user chose not to play
+			System.out.println("Thanks try again sometime else.");
+		}
+	//end of main method
+	}
+
+	private static int calculateSumForRound(int[] diceArray) {
+		boolean hasTwoOrFive = checkDiceForTwoOrFive(diceArray);
+		int sumForRound = 0;
+		if(!hasTwoOrFive) {
+			sumForRound = noStuckDieSum(diceArray);
+		}
+		return sumForRound;
+	}
+
+	private static boolean checkDiceForTwoOrFive(int[] diceArray) {
+		boolean hasTwoOrFive = false;
+		for(int i = 0; i<diceArray.length; i++) {
+			if(2 == diceArray[i] || 5== diceArray[i] ) {
+				hasTwoOrFive = true;
+			}
+		}
+		return hasTwoOrFive;
+	}
+
+	private static int countStuckDice(int[] diceArray) {
+		int stuckDiceCount = 0;
+		for(int i = 0; i<diceArray.length; i++) {
+			if(2 == diceArray[i] || 5 == diceArray[i]) {
+				stuckDiceCount = stuckDiceCount + 1;
+			}
+		}
+		return stuckDiceCount;
+	}
+
+	private static int findNextDiceCount(int[] diceArray, int diceCount) {
+		boolean hasTwoOrFive = checkDiceForTwoOrFive(diceArray);
+		int stuckDiceCount = 0;
+		if(hasTwoOrFive) {
+			stuckDiceCount = countStuckDice(diceArray);
+		}
+		return diceCount - stuckDiceCount;
+	}
+
+	private static int noStuckDieSum(int[] diceArray) {
+		int sumForRound = 0;
+		for(int i = 0; i<diceArray.length; i++) {
+			sumForRound = sumForRound + diceArray[i];
+		}
+		return sumForRound;
+	}
+
+
+
+	private static void printDiceArray(int[] diceArray, int diceCount) {
+		for(int i = 0; i<diceCount - 1; i++) {
+			System.out.print(diceArray[i] + ", ");
+		}
+		System.out.print(diceArray[diceCount - 1] + ". " );
+	}
+
+	private static void rollDiceArray(int[] diceArray, int diceCount) {
+
+		outofdice(diceArray);
+		for(int i = 0; i<diceCount; i++) {
+			diceArray[i] = RollSingleDice();
+		}
+	}
+
+	private static int RollSingleDice() {
+		int diceRoll = (int)((Math.random()*6) + 1);
+		return diceRoll;
+	}
+
+	private static void outofdice(int[] diceArray) {
+		for(int i = 0; i<diceArray.length; i++) {
+			diceArray[i] = 0;
+		}
+	}
+}
