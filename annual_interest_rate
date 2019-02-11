@@ -1,69 +1,130 @@
 import java.util.Scanner;
-public class annual_income {
 
-	public static void main(String[] args) {
+public class annual_interest_rate {
+
+		public static void main(String[] args) {
+			
+			boolean newoption = true;
+			boolean accountfalse = true;
+			boolean tryingtosignin = true;
+			double balance = accountbalance();
+			
+			
+			while(tryingtosignin) {
+				
+			System.out.println("Thanks for banking at Midfirst what is your account number?\nhint your account number is 1122.\n");
+			System.out.println("Please type your account number in.");
+			
+			Scanner scanner = new Scanner(System.in);
+			int accountnumber = scanner.nextInt();
+			
+			
+			
+			if(accountnumber == 1122) {
+				
+					System.out.println("Thanks for singing into your Midfirst account.\n");
+				
+					while(newoption) {
+				optionsmenumethod();
+				
+				Scanner scannermulti = new Scanner(System.in);
+				int optionscanner = scannermulti.nextInt();
+				
+				if(optionscanner == 1) {
+					//View Balance for account
+					System.out.println("Your account balance is: $" + balance);
+					tryingtosignin = false;
+					
+					newoption = true;
+				}
+				else if (optionscanner == 2) {
+					// deposit money 
+					
+					tryingtosignin = false;
+					
+					System.out.println("How much would you like to deposit?");
+
+					Scanner deposit = new Scanner(System.in);
+					double depositscanner = deposit.nextInt();
+					
+					balance = accountbalance() + depositscanner;
+					
+					System.out.println("Your new account balance is: $" + balance);
+			
+					newoption = true;
+				}
+				else if (optionscanner == 3) {
+					//withdraw money
+					
+					tryingtosignin = false;
+					
+					System.out.println("How much would you like to withdraw?");
+
+					Scanner withdraw = new Scanner(System.in);
+					double withdrawscanner = withdraw.nextInt();
+					
+					balance = accountbalance() - withdrawscanner;
+					
+					System.out.println("Your new account balance is: $" + balance);
+				
+					newoption = true;
+					
+				}
+				else if (optionscanner == 4) {
+					//view account info
+					tryingtosignin = false;
+					newoption = true;
+				}
+				
+				else if (optionscanner == 5) {
+					//sign out
+					tryingtosignin = true;
+					newoption = false;
+					System.out.println("You're now signed out, thanks for using using Midfirst bank.\n");
+				}
+				
+				}// end of new option while loop
+				
+			}//end of main if statement
+			
+			else {
+				
+				while(accountfalse) {
+				System.out.println("Wrong account number please try again, or type 1 to cancel.");
+				Scanner wrongscannerloop = new Scanner(System.in);
+				int wrong = wrongscannerloop.nextInt();
+				
+				if (wrong == 1) {
+					System.out.println("Sorry we couldn't be of assistance today.\n");
+					accountfalse= false;
+					tryingtosignin = true;
+				}
+				else { 
+					accountfalse = true;
+					
+				}
+				} // end of loop for wrong account number
+				
+			}//end of main else statement
+			}// end of while loop for trying to sign in
+
+			}//end of main method
 		
-		boolean accountfalse = true;
-		double accountbalance = 20000;
-		System.out.println("Thanks for banking at Midfirst what is your account number?\nhint your account number is 1122.\n");
-		System.out.println("Please type your account number in.");
+		private static double accountbalance() {
+			double balance = 20000;
+			
+			return balance;
+			
+		}
 		
-		Scanner scanner = new Scanner(System.in);
-		int accountnumber = scanner.nextInt();
+
 		
-		
-		
-		if(accountnumber == 1122) {
-			System.out.println("Thanks for signing into your Midfirst account.\n"
-					+ "1 - View Balance\n"
+		private static void optionsmenumethod() {
+			System.out.println("1 - View Balance\n"
 					+ "2 - deposit Money\n"
 					+ "3 - Withdraw Money\n"
 					+ "4 - View Account Info\n"
 					+ "5 - Signout");
-			
-			Scanner scannermulti = new Scanner(System.in);
-			int optionscanner = scannermulti.nextInt();
-			
-			if(optionscanner == 1) {
-				
-			}
-			else if (optionscanner == 2) {
-				
-			}
-			else if (optionscanner == 3) {
-				
-			}
-			else if (optionscanner == 4) {
-				
-			}
-			
-			else if (optionscanner == 5) {
-				
-			}
-			
-		}//end of main if statement
-		
-		else {
-			
-			while(accountfalse) {
-			System.out.println("Wrong account number please try again, or type 1 to cancel.");
-			Scanner wrongscannerloop = new Scanner(System.in);
-			int wrong = wrongscannerloop.nextInt();
-			
-			if (wrong == 1) {
-				System.out.println("Thanks for banking at MidFirst");
-				accountfalse= false;
-			}
-			else { 
-				accountfalse = true;
-				
-			}
-			} // end of loop
-			
-		}//end of main else statement
+		}
 
-		}//end of main method
-	
-
-	}//end of class
-
+		}//end of class
