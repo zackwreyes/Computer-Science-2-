@@ -1,0 +1,40 @@
+
+	
+	public static void main(String[] args) {
+		
+		loopfor_e(); //return value from method loopfor_e
+		System.out.println("The answer for e^x rounded to aprox 25 decimal places is:");
+		arrayqueue(); //return value from method arrayqueue
+		}
+	
+	public static void loopfor_e() {
+		 seriesLength answerEstimated = new seriesLength();
+		 
+
+		 
+		 for (int i = 100; i<= 1000; i = i+100) {
+			 answerEstimated.setSeriesLength(i);
+			 answerEstimated.getApproximation();
+		 }// end of for loop
+		 
+		 answerEstimated.show_e_aprox(); // print out the aprox number of e
+		 
+	}
+	
+	public static void arrayqueue() {
+		queue elementsqueue = new queue();
+		
+		for (int q =1; q<=20; q++) {
+			
+			elementsqueue.push(q, q);
+			
+			while (!elementsqueue.empty()) {
+				
+				double answer = Math.pow(2.7182818284590452353602862,q);
+				
+				System.out.print("e^" + elementsqueue.enqueue() + " = " + answer + " \n"); //pushes # 1-20 from a stack of numbers in an array
+			}// end of while loop for empty stack
+				
+		} // end of for loop for arrayqueue
+	}
+}
