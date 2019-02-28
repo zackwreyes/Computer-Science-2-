@@ -1,0 +1,27 @@
+
+
+	  private int setSeriesLength;
+	  private BigDecimal e_aproxnumber;
+	 public void getApproximation() {
+		 this.e_aproxnumber = new BigDecimal("1");
+		 BigDecimal denominator = new BigDecimal ("1");
+			BigDecimal numerator = new BigDecimal   ("1");
+			
+		
+			for(int i = 1; i <=setSeriesLength; i++) {
+				
+				denominator = denominator.multiply(new BigDecimal(i));
+				this.e_aproxnumber = this.e_aproxnumber.add(numerator.divide(denominator,25,BigDecimal.ROUND_DOWN));
+			}//end of for loop for aprox e
+	 } 
+		 
+		public void setSeriesLength(int newSeriesLength) {
+			this.setSeriesLength = newSeriesLength;
+			
+	}
+		public BigDecimal show_e_aprox() {
+			System.out.println("e is aproximatly: " + this.e_aproxnumber);
+			return e_aproxnumber;
+			
+		}	
+		
