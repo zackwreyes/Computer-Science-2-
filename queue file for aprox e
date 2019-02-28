@@ -1,0 +1,39 @@
+public class queue {
+	
+	private int [] elements;		//an array to store integers in the stack
+	private int size; 				//number of integers in stack
+	public static final int default_capacity = 8;		//default capacity of array
+
+	
+	public queue() {
+		this (default_capacity);
+	}
+	public queue(int capacity){
+		elements  = new int[capacity];
+	}
+	
+	public void push(int capacity, int value) {
+		if(size>=elements.length) {
+			int[] temp = new int[elements.length*capacity];
+			System.arraycopy(elements, 0, temp, 0, elements.length);
+		}
+		elements[size++] = value;
+	}
+	
+public int enqueue() {
+		return elements[-- size];
+	}
+	
+	public int dequeue() {
+		return elements[size -1];		
+	}
+	public boolean empty() {
+		
+		return size == 0;
+	}
+	public int getSize() {
+		
+		return size;
+	}
+	
+}
