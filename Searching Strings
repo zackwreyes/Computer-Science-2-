@@ -1,0 +1,45 @@
+//Program to search strings.
+#include<iostream>
+
+int strlen(char org[50]);
+
+using namespace std;
+
+int main()
+{
+    char org[50], dup[50];
+    int i, j, k = 0, len_orginal, len_duplicate;
+    cout<<"Only enter strings without spaces.";
+    cout<<"\nEnter Original String:";
+    fflush(stdin);
+    cin>>org;
+    fflush(stdin);
+    cout<<"Enter Pattern to Search:";
+    cin>>dup;
+
+    len_orginal = strlen(org);
+    len_duplicate = strlen(dup);
+    for (i = 0; i <= (len_orginal - len_duplicate); i++)
+    {
+        for (j = 0; j < len_duplicate; j++)
+        {
+            //comparing the orginal string to the duplicate string by indivudal char.
+            if (org[i + j] != dup[j])
+                break ;
+        }
+        if (j == len_duplicate)
+        {
+            k++;
+            cout<<"\nPattern Found at Position: "<<i;
+        }
+    }
+    if (k == 0)
+        cout<<"\nError:No Match Found!";
+    else
+        cout<<"\nTotal Instances Found = "<<k;
+    return 0;
+}
+
+int strlen(char org[50]) {
+    return 0;
+}
