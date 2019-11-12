@@ -1,0 +1,33 @@
+//Program to read integers and return the binary format of the number
+#include<iostream>
+#include <stdio.h>
+using namespace std;
+
+int main()
+{
+    int n,number,a, c, k;       //Setting the vairables for the for loops and input
+
+    cout<<"Enter an integer to see that number in binary format.\n";
+    cin>>number;        // Store the input as number
+    n = number;
+    cout<<"Binary Value of Given Number Is: ";
+
+    for( a=1;n!=0;a++)  {
+        n = n/2;
+
+    }
+
+    a = a-2;
+    
+        // Running through and outputting the 1's and 0's of the number
+    for (c = a; c >= 0; c--)    {
+        k = number >> c;
+        
+        if (k & 1)
+            cout<<"1";
+        else
+            cout<<"0";
+    }
+    
+    return 0;
+}
