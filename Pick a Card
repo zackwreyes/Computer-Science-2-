@@ -1,0 +1,40 @@
+public class Practice { 
+  	public static void main(String[] args) { 
+int card = (int) (Math.random() * 52.0); // pick a card 0-51  	 	  int CardNumber = card / 4; // determine the rank 0-12  	 	  int CardSuit = card % 4; // determine the suit 0-3 
+ 	 	  String StrCardNumber = ""; 
+ 	 	  String  StrSuit = ""; 
+ 	 	  
+ 	 	  switch (CardNumber) {  	 	  case 0: 
+ 	 	 	  StrCardNumber = "Ace";  	 	  case 1: 
+ 	 	 	  StrCardNumber = "2";  	 	  case 2: 
+ 	 	 	  StrCardNumber = "3";  	 	  case 3: 
+ 	 	 	  StrCardNumber = "4"; 
+ 	 	  case 4: 
+ 	 	 	  StrCardNumber = "5";  	 	  case 5: 
+ 	 	 	  StrCardNumber = "6";  	 	  case 6: 
+ 	 	 	  StrCardNumber = "7";  	 	  case 7: 
+ 	 	 	  StrCardNumber = "8";  	 	  case 8: 
+ 	 	 	  StrCardNumber = "9";  	 	  case 9: 
+ 	 	 	  StrCardNumber = "10"; 
+ 	 	   break;  	 	  case 10: 
+ 	 	 	  StrCardNumber = "Jack"; 
+ 	 	   break;  	 	  case 11: 
+ 	 	 	  StrCardNumber = "Queen"; 
+ 	 	   break;  	 	  case 12: 
+ 	 	 	  StrCardNumber = "King"; 
+ 	 	   break;  	 	  default: 
+ 	 	 	  StrCardNumber = "" + (CardNumber + 1); 
+ 	 	   break; 
+ 	 	   } 
+ 	 	    
+ 	 	  switch (CardSuit) {  	 	  case 0: 
+ 	 	 	  StrSuit = "Clubs";  	 	   break;  	 	  case 1: 
+ 	 	 	  StrSuit = "Diamonds"; 
+ 	 	   break;  	 	  case 2: 
+ 	 	 	  StrSuit = "Hearts";  	 	   break;  	 	  case 3: 
+ 	 	 	  StrSuit = "Spades";  	 	   break; 
+ 	 	 
+ 	 	  } 
+    System.out.print("The random card picked for you is:" + StrCardNumber +" of " + StrSuit ); 
+ 	 	  } 
+} 
