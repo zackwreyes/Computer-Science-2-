@@ -1,0 +1,27 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    fstream dataFile;
+
+    cout << "Opening file...\n";
+    dataFile.open("demofile.txt", ios::out); //Open for output
+    cout << "Now writing data to the file. \n";
+    //Write to the file
+    dataFile << "Writing to line 1\n";
+    dataFile << "Writing to line 2\n";
+    dataFile << "Writing to line 3\n";
+    dataFile << "Writing to line 4\n";
+    cout << "Finished writing to file, and now closing the file\n";
+    dataFile.close();       //Close the file
+
+    cout << "Opening the file again...\n"; //Opening the file in append mode.
+    //Write to the file
+    dataFile << "Writing more data to the file.\n";
+    dataFile << "Writing the new data to the file\n";
+    dataFile << "Writing more data the file in append mode.\n";
+    cout << "Now closing the file.\n";
+    dataFile.close();       //Close the file
+    return 0;
+}
