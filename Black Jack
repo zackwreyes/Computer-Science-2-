@@ -1,0 +1,82 @@
+package blackJack;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Deck Deck = new Deck();
+
+		Deck.Player();
+		Deck.Dealer();
+	}
+}
+
+
+Different class.
+
+package blackJack;
+
+public class Deck {
+
+	public static void hand() {
+		int first_card = (int) Math.floor(Math.random() * 11);
+		int second_card = (int) Math.floor(Math.random() * 11);
+		int value_add_card = (int) Math.floor(Math.random() * 11);
+		int total = first_card + second_card;
+		int hand = total + value_add_card;
+
+		System.out.println(first_card + " + " + second_card + " = " + total);
+
+		if(total< 17) {
+			System.out.println(first_card + " + " + second_card + " + " + " = " + total + "\nUnder 17 auto hit to 17.");
+			System.out.println(first_card + " + " + second_card + " + " + value_add_card + " = " + hand);
+
+			if (total > 21) {
+				System.out.println( hand + " You Busted");
+			}
+		}
+		else if (total >= 17 && total <= 21) {
+			System.out.println("You got " + total);
+		}
+
+		else {
+			System.out.println( hand + " You Busted");
+		}
+    
+    Different Class
+    
+    package blackJack;
+
+public class Card {
+
+	public static int first_card = (int) Math.floor(Math.random() * 11);
+	public static int second_card = (int) Math.floor(Math.random() * 11);
+	public static int value_add_card = (int) Math.floor(Math.random() * 11);
+	public static int total = first_card + second_card;
+	public static int hand = total + value_add_card;
+
+
+
+	public static void Player() {
+		
+			System.out.println(first_card + " + " + second_card + " = " + total);
+			
+			if(total< 17) {
+				System.out.println(first_card + " + " + second_card + " + " + " = " + total + "\nUnder 17 auto hit to 17.");
+				System.out.println(first_card + " + " + second_card + " + " + value_add_card + " = " + hand);
+				
+				if (total > 21) {
+					System.out.println( hand + " You Busted");
+				}
+			}
+		else if (total >= 17 && total <= 21) {
+				System.out.println("You got " + total);
+			}
+			
+		else {
+			System.out.println( hand + " You Busted");
+		}
+			
+		}
+
+}
