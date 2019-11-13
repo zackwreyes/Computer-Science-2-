@@ -1,0 +1,29 @@
+package count;
+import java.util.Arrays;
+import java.util.Scanner;
+public class count {
+
+	public static void main(String[] args) throws Exception {
+
+		UrlRead();
+		java.io.File file = new java.io.File("count.txt");
+		if (file.exists()) {
+			System.out.println("File already exists");
+			ReadData();
+			System.exit(0);
+		}
+
+		try(
+				//create a file
+				java.io.PrintWriter output = new java.io.PrintWriter(file);
+				) {
+			//write formated output to the file
+			for(int i=1; i<=100; i++) {
+				int numbers = (int) Math.ceil(Math.random()*101); 
+				output.print(numbers + " ");
+
+			}
+			output.close();
+		}
+		ReadData();
+	}
