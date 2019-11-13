@@ -1,0 +1,42 @@
+// include the library code:
+#include <LiquidCrystal.h>
+#include <SimpleDHT.h>
+
+int pinDHT11 = 2;
+SimpleDHT11 dht11;
+
+// initialize the library with the numbers of the interface pins
+LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
+
+void setup() {
+  // set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
+}
+ int readData = DHT.read22(dataPin); // Reads the data from the sensor
+  float t = 0; // Gets the values of the temperature
+  float h = 0; // Gets the values of the humidity
+  float data[40] = [0];
+ if (dht11.read(pinDHT11, &temperature, &humidity, data)) {
+    lcd.setCursor(0,0); lcd.print("It failed");
+    return;
+  }
+  for (int i = 0; i < 40; i++) {
+    lcd.setCursor(0,0); lcd.print((int)data[i]);
+    if (i > 0 && ((i + 1) % 4) == 0) {
+      lcd.setCursor(0,0); lcd.print(' ');
+    }
+  }
+
+  lcd.setCursor(0,0); lcd.print("Sample OK: ");
+  lcd.setCursor(0,0);
+lcd.print((int)t); lcd.print(" "); lcd.print((char)223); lcd.print("F");
+delay(2000);
+
+ lcd.setCursor(1,0);
+lcd.print((int)h); lcd.print(" %"); lcd.print(" Humidity");
+delay(2000);
+  // DHT11 sampling rate is 1HZ.
+  delay(1000);
+}
+ 
+}
