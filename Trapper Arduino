@@ -1,0 +1,49 @@
+char data =0;                         // data set up for the bluetooth module it reads 0 for no input or 1 for an input
+int pir = 2;                          // pir sensor @ pin 2
+int led = 13;                         // led @ pin 13
+int val;                              // variable to store the servo position
+int pos = 0;                          // position for servo motor to reset to
+int servo = 10;
+
+void setup() {
+  
+  //code that runs on startup
+
+  pinMode(pir,INPUT);                 // pir is an input device
+  pinMode(led,OUTPUT);                // led is an output device
+  pinMode(servo,OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  // put your main code here, to run repeatedly:
+
+  val = digitalRead(pir);                // read input value from pir
+  if (val == HIGH) {                     // check if motion is detected
+
+    if(Serial.available() > 0)            // Send data only when you receive data:
+   {
+      data = Serial.read();              //Read the incoming data & store into data
+      Serial.print(data);                //Print Value inside data in Serial monitor
+      Serial.print("\n");
+      if(data == '1')                    // Checks whether value of data is equal to 1
+      
+      digitalWrite(led, HIGH);           // turn LED ON
+      delay(5000);
+      
+// for loop that goes from 0 degrees to 180 degrees in increaments of 1 for servo motor
+      
+      for (pos = 0; pos <= 180; pos += 1) { 
+    digitalWrite(servo,pos);             // tell servo to go to position in variable 'pos'
+    delay(15);                           // waits 15ms for the servo to reach the position
+  }  
+   }
+  else if                              // if the pir sensor reads no movement follow this block of code
+      (data == '0') {               //  Checks whether value of data is equal to 0
+    digitalWrite(led, LOW);             // turn LED OFF
+    delay(30000); 
+      }
+  }
+}
