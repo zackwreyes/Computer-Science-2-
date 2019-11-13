@@ -1,0 +1,58 @@
+/*
+ * This is a setup for an adruino that reads a pir sensor
+ * if a pir sensor picks up on movement it follows the code to
+ * the bluetooth module where it reads 1 as to do something
+ * or 0 to do nothing you can set the trap if you input a signal 
+ * from the phone it will turn on for (5 seconds), or if you don't
+ * want to set the trap it will reset after a period of time (30 seconds)
+ * and go back to looking for movement through the pir sensor 
+ * 
+ * 
+ * Will be trying to install a new library that goes into low mode that lowers the 
+ * mma/phour and shutdowns other components on the board until called upon by code
+ * this should be able to save up to 7x the power consumption before draining the power source
+ * 
+ */
+char data;                         // data set up for the bluetooth module it reads 0 for no input or 1 for an input
+int pir = 2;                          // pir sensor @ pin 2
+int led = 13;                         // led @ pin 13
+int val;                              // variable to store the servo position
+int pos = 0;                          // postion for servo motor to reset to
+int servo = 10;
+
+void setup() {
+  
+  //code that runs on startup
+
+  pinMode(pir,INPUT);                 // pir is an input device
+  pinMode(led,OUTPUT);                // led is an output device
+  pinMode(servo,OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  // put your main code here, to run repeatedly:
+
+  val = digitalRead(pir);                // read input value from pir
+  if (val == HIGH) {                     // check if motion is detected
+
+    if(Serial.available())            // Send data only when you receive data:
+   {
+      data = Serial.read();              //Read the incoming data & store into data
+      Serial.print(data);                //Print Value inside data in Serial monitor
+      Serial.print("\n");
+      if(data == 'f') {                   // Checks whether value of data is equal to 1
+      
+      digitalWrite(led, HIGH);           // turn LED ON
+
+   }
+   }
+ if   (data == 'b') {                              // if the pir sensor reads no movement follow this block of code
+    digitalWrite(led, LOW);             // turn LED OFF
+  
+      }
+  
+}
+}
