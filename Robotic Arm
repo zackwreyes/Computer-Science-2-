@@ -1,0 +1,57 @@
+//Arduino pin numbers
+//add the aervo library
+#include <Servo.h>
+
+//define our servos
+Servo servo1;
+Servo servo2;
+Servo servo3;
+
+//define Joystick Values
+const int ArmSide = 0; // controls the arm side to side
+const int ArmUp = 1; // controls the arm up and down
+const int Hand = 2; // controls the movement of the hand
+int ValArm;
+int ValArmUp;
+int ValHand;
+
+void setup() {
+   //attaches our servos on pins PWM 3-5-7
+  servo1.attach(3);
+  servo2.attach(5);
+  servo3.attach(7);
+  Serial.begin(115200);
+}
+
+void loop() {
+  
+  ValArm = analogRead(ArmSide);
+  ValArm = map (ValArm, 0, 1023, 0, 180); //servo value between 0-180
+  if (ValArm = 0) {
+    servo1.write(90);
+  }
+  else { 
+    for(int pos = 0; pos < 90; pos +=1)  
+   
+   servo1.write(pos);             
+   delay(30);
+    }
+  
+  ValArmUp = analogRead(ArmUp);
+  ValArmUp = map (ValArmUp, 0, 1023, 0, 180);
+  if (ValArmUp = 0) {
+    servo1.write(90);
+  }
+  else { 
+    for(int pos2 = 0; pos2 < 90; pos2 +=1)  
+                                  
+   servo1.write(pos2);             
+   delay(90);
+    
+  }
+  
+  ValHand = analogRead(Hand);
+  ValHand = map (ValHand, 0, 1023, 0, 180);
+  servo3.write(180);
+  
+}
